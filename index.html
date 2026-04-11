@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="logo.png">
   <title>Drag Race Simulator</title>
   <style>
     :root {
@@ -124,43 +125,14 @@
     
     /* Uniform Placement Cards */
     .placement-card { 
-      padding: 6px 16px 6px 6px; 
-      border-radius: 50px; 
+      padding: 12px 24px; 
+      border-radius: 16px; 
       font-weight: 800; 
       font-size: 15px;
       text-align: center;
-      min-width: 150px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
+      min-width: 140px;
     }
-    .placement-card.small { 
-      padding: 4px 12px 4px 4px; 
-      font-size: 13px; 
-      font-weight: 600; 
-      min-width: auto; 
-      border-radius: 50px; 
-    }
-
-    /* Avatars for game mode and track record */
-    .game-avatar { 
-      width: 28px; height: 28px; 
-      border-radius: 50%; object-fit: cover; flex-shrink: 0; 
-      background: rgba(0,0,0,0.1); 
-      display: flex; align-items: center; justify-content: center; 
-      font-size: 13px; border: 1px solid rgba(255,255,255,0.3); 
-    }
-    .placement-card.small .game-avatar { width: 22px; height: 22px; font-size: 11px; }
-
-    .track-avatar { 
-      width: 32px; height: 32px; 
-      border-radius: 50%; object-fit: cover; flex-shrink: 0; 
-      background: #eee; border: 1px solid var(--border); 
-      display: flex; align-items: center; justify-content: center; 
-      font-size: 14px; font-weight: bold; color: var(--muted); 
-    }
-    .qname-cell-content { display: flex; align-items: center; gap: 10px; text-align: left; }
+    .placement-card.small { padding: 8px 16px; font-size: 13px; font-weight: 600; min-width: auto; }
 
     /* Placement Colors */
     .bg-win { background: #0a53a8 !important; color: #ffffff !important; border: none; }
@@ -219,11 +191,71 @@
   <div class="app">
     <div class="hero">
       <h1 class="title">Greenroom Fantasy Drag Race Simulator</h1>
-      <p class="subtitle">Release v1.4.0</p>
+      <p class="subtitle">Release v1.4.0 - Last Updated 11/4/26.</p>
       
       <div class="button-row" style="margin-top: 16px;">
+        <button id="preDefBtn" class="primary" style="padding: 8px 16px; font-size: 14px;">Pre-Defined Casts</button>
         <button id="patchNotesBtn" class="secondary" style="padding: 8px 16px; font-size: 14px;">View Patch Notes</button>
         <button id="suggestBtn" class="secondary" style="padding: 8px 16px; font-size: 14px;">Suggest a Feature / Report Bug</button>
+      </div>
+    </div>
+
+    <div id="preDefModal" class="modal hidden">
+      <div class="modal-content panel">
+        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>Pre-Defined Casts</h2>
+          <button id="closePreDefBtn" class="ghost" style="padding: 6px 12px;">Close</button>
+        </div>
+        <div class="panel-body">
+          <p class="subtle" style="margin-bottom: 20px;">Selecting a season will replace your current cast with the queens from that season.</p>
+          
+          <h3 style="margin: 0 0 10px; font-size: 16px;">US Seasons</h3>
+          <div class="button-row" style="margin-top: 0; margin-bottom: 24px;">
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S1">S1</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S2">S2</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S3">S3</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S4">S4</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S5">S5</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S6">S6</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S7">S7</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S8">S8</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S9">S9</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S10">S10</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S11">S11</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S12">S12</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S13">S13</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S14">S14</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S15">S15</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S16">S16</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S17">S17</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US S18">S18</button>
+          </div>
+
+          <h3 style="margin: 0 0 10px; font-size: 16px;">US All Stars</h3>
+          <div class="button-row" style="margin-top: 0; margin-bottom: 24px;">
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS1">AS1</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS2">AS2</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS3">AS3</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS4">AS4</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS5">AS5</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS6">AS6</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS7">AS7</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS8">AS8</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS9">AS9</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="US AS10">AS10</button>
+          </div>
+
+          <h3 style="margin: 0 0 10px; font-size: 16px;">UK Seasons</h3>
+          <div class="button-row" style="margin-top: 0;">
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S1">UK1</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S2">UK2</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S3">UK3</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S4">UK4</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S5">UK5</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S6">UK6</button>
+            <button class="ghost predef-btn" style="padding: 6px 10px; font-size: 13px;" data-season="UK S7">UK7</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -239,6 +271,7 @@
             <ul>
               <li>Edited Setup Screen UI.</li>
               <li>Add Real RPDR Queens Feature.</li>
+              <li>Added new Lip Sync Songs.</li>
             </ul>
 
             <h3>v1.3.0 - Update</h3>
@@ -388,24 +421,6 @@
   </div>
 
   <script>
-    // Utility functions for UI formatting
-    function escapeHtml(text) { return String(text).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;"); }
-
-    function getGameCard(q, cssClass, isSmall = false, extraStyle = "") {
-        const sizeClass = isSmall ? " small" : "";
-        const avatarHtml = q.image 
-            ? `<img src="${escapeHtml(q.image)}" class="game-avatar" alt="${escapeHtml(q.name)}" />`
-            : `<div class="game-avatar" style="font-weight:bold;">?</div>`;
-        return `<div class="placement-card ${cssClass}${sizeClass}" style="${extraStyle}">${avatarHtml}<span>${escapeHtml(q.name)}</span></div>`;
-    }
-
-    function getTrackName(q) {
-        const avatarHtml = q.image 
-            ? `<img src="${escapeHtml(q.image)}" class="track-avatar" alt="${escapeHtml(q.name)}" />`
-            : `<div class="track-avatar">?</div>`;
-        return `<div class="qname-cell-content">${avatarHtml}<span style="font-weight: 700;">${escapeHtml(q.name)}</span></div>`;
-    }
-
     const MIN_CAST = 10;
     const MAX_CAST = 16;
     let allRealQueens = []; // Will hold the data loaded from queens.json
@@ -456,6 +471,21 @@
       "Physical by Dua Lipa", 
       "Roar by Katy Perry", 
       "Rain On Me by Lady Gaga & Ariana Grande",
+      "I'm Every Woman by Chaka Khan",
+      "Espresso by Sabrina Carpenter",
+      "Dont Start Now by Dua Lipa",
+      "Break Free by Ariana Grande",
+      "Time Warp from The Rocky Horror Picture Show",
+      "Hot Stuff by Donna Summer",
+      "The Winner Takes It All by Abba",
+      "Murder On The Dancefloor by Sophie Ellis-Bextor",
+      "Super Graphic Ultra Modern Girl by Chappell Roan",
+      "WAP by Cardi B ft. Megan Thee Stallion",
+      "Edge Of Glory by Lady Gaga",
+      "I Wanna Dance With Somebody by Whitney Houtston",
+      "Run The World (Girls) by Beyoncé",
+      "Bad Romance by Lady Gaga",
+      "Total Eclipse Of The Heart by Bonnie Tyler",
     ];
 
     const state = {
@@ -482,6 +512,9 @@
       finaleMeta: document.getElementById("finaleMeta"), finaleContent: document.getElementById("finaleContent"), finaleBtn: document.getElementById("finaleBtn"),
       
       // New Elements
+      preDefBtn: document.getElementById("preDefBtn"),
+      closePreDefBtn: document.getElementById("closePreDefBtn"),
+      preDefModal: document.getElementById("preDefModal"),
       patchNotesBtn: document.getElementById("patchNotesBtn"),
       closePatchNotesBtn: document.getElementById("closePatchNotesBtn"),
       patchNotesModal: document.getElementById("patchNotesModal"),
@@ -495,6 +528,9 @@
     };
 
     // Modal Events
+    el.preDefBtn.addEventListener("click", () => el.preDefModal.classList.remove("hidden"));
+    el.closePreDefBtn.addEventListener("click", () => el.preDefModal.classList.add("hidden"));
+
     el.patchNotesBtn.addEventListener("click", () => el.patchNotesModal.classList.remove("hidden"));
     el.closePatchNotesBtn.addEventListener("click", () => el.patchNotesModal.classList.add("hidden"));
     
@@ -504,6 +540,38 @@
     el.suggestBtn.addEventListener("click", () => {
       window.open("https://forms.gle/bprZzRLGFyfe9yWs6", "_blank");
     });
+
+    // Pre-Defined Cast Selection
+    document.querySelectorAll(".predef-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const season = e.target.dataset.season;
+        loadPredefCast(season);
+      });
+    });
+
+    function loadPredefCast(season) {
+      if (!allRealQueens.length) return alert("Still loading queens data, please wait a moment.");
+      
+      const cast = allRealQueens.filter(q => q.seasons && q.seasons.includes(season));
+      if (!cast.length) return alert(`No queens found for ${season}.`);
+
+      state.queens = []; // Clear current cast
+      
+      cast.forEach(q => {
+        state.queens.push({
+          name: q.name,
+          image: q.image,
+          comedy: intRand(3, 10),
+          design: intRand(3, 10),
+          performance: intRand(3, 10),
+          acting: intRand(3, 10),
+          lip_sync: intRand(3, 10)
+        });
+      });
+      
+      updateSetupUI();
+      el.preDefModal.classList.add("hidden");
+    }
 
     // Real Queen Search & Add functionality
     el.realQueenSearch.addEventListener("input", (e) => {
@@ -569,6 +637,7 @@
     function intRand(min, max) { return Math.floor(rand(min, max + 1)); }
     function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
     function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+    function escapeHtml(text) { return String(text).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;"); }
     function normalizeStat(v) { const n = parseInt(v ?? 5, 10); return clamp(Number.isFinite(n) ? n : 5, 1, 10); }
 
     function randomizeQueenForm() {
@@ -830,9 +899,9 @@
             <p class="big-message">${data.maxi.name}</p>
             <p class="muted" style="margin-bottom:20px;">The queens' performances...</p>
             <div class="flex-col-center">
-              ${slayed.length ? `<div class="group-row"><p class="muted">Had a great performance!</p><div class="flex-center">${slayed.map(q => getGameCard(q, 'bg-high')).join("")}</div></div>` : ""}
-              ${okay.length ? `<div class="group-row"><p class="muted">Had a good performance.</p><div class="flex-center">${okay.map(q => getGameCard(q, 'bg-safe')).join("")}</div></div>` : ""}
-              ${bad.length ? `<div class="group-row"><p class="muted">Had a bad performance...</p><div class="flex-center">${bad.map(q => getGameCard(q, 'bg-low')).join("")}</div></div>` : ""}
+              ${slayed.length ? `<div class="group-row"><p class="muted">Had a great performance!</p><div class="flex-center">${slayed.map(q => `<div class="placement-card bg-high">${escapeHtml(q.name)}</div>`).join("")}</div></div>` : ""}
+              ${okay.length ? `<div class="group-row"><p class="muted">Had a good performance.</p><div class="flex-center">${okay.map(q => `<div class="placement-card bg-safe">${escapeHtml(q.name)}</div>`).join("")}</div></div>` : ""}
+              ${bad.length ? `<div class="group-row"><p class="muted">Had a bad performance...</p><div class="flex-center">${bad.map(q => `<div class="placement-card bg-low">${escapeHtml(q.name)}</div>`).join("")}</div></div>` : ""}
             </div>
           </div>
         `;
@@ -854,14 +923,14 @@
             <p class="muted" style="margin-bottom:16px;">Based on tonight's performances...</p>
             <div class="flex-col-center">
               <div class="flex-center">
-                ${tops.map(q => getGameCard(q, 'bg-safe')).join("")}
-                ${bottoms.map(q => getGameCard(q, 'bg-safe')).join("")}
+                ${tops.map(q => `<div class="placement-card bg-safe">${escapeHtml(q.name)}</div>`).join("")}
+                ${bottoms.map(q => `<div class="placement-card bg-safe">${escapeHtml(q.name)}</div>`).join("")}
               </div>
               <p class="muted">You represent the tops and bottoms of the week.</p>
               ${safes.length ? `
                 <hr style="width:100%; border:0; border-top:1px solid var(--border); margin:10px 0;">
                 <div class="flex-center">
-                  ${safes.map(q => getGameCard(q, 'bg-safe', true)).join("")}
+                  ${safes.map(q => `<span class="placement-card small bg-safe">${escapeHtml(q.name)}</span>`).join("")}
                 </div>
                 <p class="muted">You are safe.</p>
               ` : ""}
@@ -894,16 +963,16 @@
                 <p class="muted" style="margin-bottom:16px;">Ladies, I've made some decisions...</p>
                 <div class="flex-col-center">
                   <div class="group-row">
-                    <div class="flex-center">${p.topTwo.map(q => getGameCard(q, 'bg-high')).join("")}</div>
+                    <div class="flex-center">${p.topTwo.map(q => `<div class="placement-card bg-high">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">Condragulations, you are the Top 2 queens of the week!</p>
                   </div>
                   ${p.highQueens.length ? `
                   <div class="group-row">
-                    <div class="flex-center">${p.highQueens.map(q => getGameCard(q, 'bg-high')).join("")}</div>
+                    <div class="flex-center">${p.highQueens.map(q => `<div class="placement-card bg-high">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">Good job this week, you're safe.</p>
                   </div>` : ""}
                   <div class="group-row" style="border:none;">
-                    <div class="flex-center">${p.bottomThree.map(q => getGameCard(q, 'bg-low')).join("")}</div>
+                    <div class="flex-center">${p.bottomThree.map(q => `<div class="placement-card bg-low">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">Since its our first episode, Nobody is going home! instead the top 2 will lip sync for the win!</p>
                   </div>
                 </div>
@@ -916,21 +985,21 @@
                 <p class="muted" style="margin-bottom:16px;">Ladies, I've made some decisions...</p>
                 <div class="flex-col-center">
                   <div class="group-row">
-                    <div class="flex-center">${p.winners.map(q => getGameCard(q, 'bg-win')).join("")}</div>
+                    <div class="flex-center">${p.winners.map(q => `<div class="placement-card bg-win">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">Condragulations, you're the winner${p.winners.length > 1 ? "s" : ""} of today's challenge!</p>
                   </div>
                   ${p.highQueens.length ? `
                   <div class="group-row">
-                    <div class="flex-center">${p.highQueens.map(q => getGameCard(q, 'bg-high')).join("")}</div>
+                    <div class="flex-center">${p.highQueens.map(q => `<div class="placement-card bg-high">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">Good job this week, you're safe.</p>
                   </div>` : ""}
                   ${p.savedLow ? `
                   <div class="group-row">
-                    <div class="flex-center">${getGameCard(p.savedLow, 'bg-low')}</div>
+                    <div class="flex-center"><div class="placement-card bg-low">${escapeHtml(p.savedLow.name)}</div></div>
                     <p class="muted">You are safe, but step it up.</p>
                   </div>` : ""}
                   <div class="group-row" style="border:none;">
-                    <div class="flex-center">${p.bottomTwo.map(q => getGameCard(q, 'bg-btm')).join("")}</div>
+                    <div class="flex-center">${p.bottomTwo.map(q => `<div class="placement-card bg-btm">${escapeHtml(q.name)}</div>`).join("")}</div>
                     <p class="muted">I'm sorry my dears but you are up for elimination.</p>
                   </div>
                 </div>
@@ -967,8 +1036,8 @@
             <p class="big-message" style="margin: 16px 0;">${escapeHtml(data.lipSync.song)}</p>
             <div class="flex-center" style="align-items: stretch; gap: 16px;">
               ${data.lipSync.performances.map(p => `
-                <div style="text-align:center; width: 170px; display: flex; flex-direction: column;">
-                  ${getGameCard(p.queen, 'bg-safe', false, 'width: 100%;')}
+                <div style="text-align:center; width: 160px; display: flex; flex-direction: column;">
+                  <div class="placement-card bg-safe" style="flex: 1;">${escapeHtml(p.queen.name)}</div>
                   <p class="muted" style="margin-top:6px; font-size:13px;">${p.event.text}</p>
                 </div>
               `).join("")}
@@ -1014,11 +1083,11 @@
         if (e.top2LipSync) {
             contentInner = `
               <div class="group-row">
-                ${getGameCard(e.winner, 'bg-win')}
+                <div class="placement-card bg-win">${escapeHtml(e.winner.name)}</div>
                 <p class="muted">You're a winner baby!</p>
               </div>
               <div class="group-row" style="border:none;">
-                ${getGameCard(e.loser, 'bg-top2')}
+                <div class="placement-card bg-top2">${escapeHtml(e.loser.name)}</div>
                 <p class="muted">You are safe to slay another day.</p>
               </div>
             `;
@@ -1027,8 +1096,8 @@
             contentInner = `
               <div class="group-row" style="border:none;">
                 <div class="flex-center">
-                    ${getGameCard(e.q1, 'bg-shantay')}
-                    ${getGameCard(e.q2, 'bg-shantay')}
+                    <div class="placement-card bg-shantay">${escapeHtml(e.q1.name)}</div>
+                    <div class="placement-card bg-shantay">${escapeHtml(e.q2.name)}</div>
                 </div>
                 <p class="muted">${text}</p>
               </div>
@@ -1037,8 +1106,8 @@
             contentInner = `
               <div class="group-row" style="border:none;">
                 <div class="flex-center">
-                    ${getGameCard(e.q1, 'bg-elim')}
-                    ${getGameCard(e.q2, 'bg-elim')}
+                    <div class="placement-card bg-elim">${escapeHtml(e.q1.name)}</div>
+                    <div class="placement-card bg-elim">${escapeHtml(e.q2.name)}</div>
                 </div>
                 <p class="muted">Sashay away, both of you.</p>
               </div>
@@ -1046,11 +1115,11 @@
         } else {
             contentInner = `
               <div class="group-row">
-                ${getGameCard(e.survivor, 'bg-shantay')}
+                <div class="placement-card bg-shantay">${escapeHtml(e.survivor.name)}</div>
                 <p class="muted">Shantay you stay.</p>
               </div>
               <div class="group-row" style="border:none;">
-                ${getGameCard(e.eliminated, 'bg-elim')}
+                <div class="placement-card bg-elim">${escapeHtml(e.eliminated.name)}</div>
                 <p class="muted">Sashay away.</p>
               </div>
             `;
@@ -1089,7 +1158,7 @@
                 <tbody>
                   ${sortedQueens.map(q => `
                     <tr>
-                      <td class="qname-cell">${getTrackName(q)}</td>
+                      <td class="qname-cell">${escapeHtml(q.name)}</td>
                       ${Array.from({length: state.episodeNumber}, (_, i) => {
                         let p = q.history[i];
                         if (!p) return `<td class="empty-cell"></td>`;
@@ -1192,9 +1261,9 @@
                 <div class="label-row"><span class="pill">Screen 1 of 7</span></div>
                 <p class="big-message">Semifinal 1 Matchup</p>
                 <div class="flex-center" style="gap:24px; margin-top: 12px;">
-                  ${getGameCard(f.semi1.winner, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.semi1.winner.name)}</div>
                   <p class="muted" style="font-weight:900;">VS</p>
-                  ${getGameCard(f.semi1.loser, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.semi1.loser.name)}</div>
                 </div>
               </div>
             `;
@@ -1204,7 +1273,7 @@
                 <div class="label-row"><span class="pill">Screen 2 of 7</span></div>
                 <p class="big-message">Semifinal 1 Winner</p>
                 <div class="group-row" style="border:none;">
-                  ${getGameCard(f.semi1.winner, 'bg-high')}
+                  <div class="placement-card bg-high">${escapeHtml(f.semi1.winner.name)}</div>
                   <p class="muted" style="font-size:12px;">Eliminated: ${escapeHtml(f.semi1.loser.name)}</p>
                 </div>
               </div>
@@ -1215,9 +1284,9 @@
                 <div class="label-row"><span class="pill">Screen 3 of 7</span></div>
                 <p class="big-message">Semifinal 2 Matchup</p>
                 <div class="flex-center" style="gap:24px; margin-top: 12px;">
-                  ${getGameCard(f.semi2.winner, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.semi2.winner.name)}</div>
                   <p class="muted" style="font-weight:900;">VS</p>
-                  ${getGameCard(f.semi2.loser, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.semi2.loser.name)}</div>
                 </div>
               </div>
             `;
@@ -1227,7 +1296,7 @@
                 <div class="label-row"><span class="pill">Screen 4 of 7</span></div>
                 <p class="big-message">Semifinal 2 Winner</p>
                 <div class="group-row" style="border:none;">
-                  ${getGameCard(f.semi2.winner, 'bg-high')}
+                  <div class="placement-card bg-high">${escapeHtml(f.semi2.winner.name)}</div>
                   <p class="muted" style="font-size:12px;">Eliminated: ${escapeHtml(f.semi2.loser.name)}</p>
                 </div>
               </div>
@@ -1238,9 +1307,9 @@
                 <div class="label-row"><span class="pill">Screen 5 of 7</span></div>
                 <p class="big-message">The Final Lip Sync</p>
                 <div class="flex-center" style="gap:24px; margin-top: 12px;">
-                  ${getGameCard(f.final.winner, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.final.winner.name)}</div>
                   <p class="muted" style="font-weight:900;">VS</p>
-                  ${getGameCard(f.final.loser, 'bg-safe')}
+                  <div class="placement-card bg-safe">${escapeHtml(f.final.loser.name)}</div>
                 </div>
               </div>
             `;
@@ -1254,19 +1323,13 @@
                   <div class="spinner"></div>
                 </div>
                 <div id="winnerRevealBox" class="hidden flex-col-center" style="width:100%;">
-                    <div class="placement-card bg-winner" style="padding: 24px; font-size: 20px; width: 100%; max-width: 400px; border-radius: 24px; flex-direction: column;">
+                    <div class="placement-card bg-winner" style="padding: 24px; font-size: 20px; width: 100%; max-width: 400px; border-radius: 24px;">
                       <p style="margin:0 0 8px; font-size:14px; font-weight:600; opacity:0.8;">WINNER</p>
-                      <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom: 8px;">
-                        ${f.final.winner.image ? `<img src="${escapeHtml(f.final.winner.image)}" style="width:72px; height:72px; border-radius:50%; object-fit:cover; border:3px solid rgba(0,0,0,0.1);" />` : `<div style="width:72px; height:72px; border-radius:50%; background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:bold;">?</div>`}
-                        <p class="big-message" style="margin:0;">${escapeHtml(f.final.winner.name)}<span class="winner-crown">👑</span></p>
-                      </div>
+                      <p class="big-message" style="margin:0;">${escapeHtml(f.final.winner.name)}<span class="winner-crown">👑</span></p>
                     </div>
-                    <div class="placement-card bg-runner" style="padding: 16px; width: 100%; max-width: 400px; border-radius: 16px; flex-direction: column;">
+                    <div class="placement-card bg-runner" style="padding: 16px; width: 100%; max-width: 400px; border-radius: 16px;">
                       <p style="margin:0 0 4px; font-size:12px; font-weight:600; opacity:0.8;">RUNNER UP</p>
-                      <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
-                        ${f.final.loser.image ? `<img src="${escapeHtml(f.final.loser.image)}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid rgba(0,0,0,0.1);" />` : `<div style="width:40px; height:40px; border-radius:50%; background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-weight:bold;">?</div>`}
-                        <p style="margin:0; font-weight:800; font-size: 16px;">${escapeHtml(f.final.loser.name)}</p>
-                      </div>
+                      <p style="margin:0; font-weight:800; font-size: 16px;">${escapeHtml(f.final.loser.name)}</p>
                     </div>
                 </div>
               </div>
@@ -1305,7 +1368,7 @@
                     <tbody>
                       ${sortedQueens.map(q => `
                         <tr>
-                          <td class="qname-cell">${getTrackName(q)}</td>
+                          <td class="qname-cell">${escapeHtml(q.name)}</td>
                           ${Array.from({length: state.episodeNumber}, (_, i) => {
                             let p = q.history[i];
                             if (!p) return `<td class="empty-cell"></td>`;
@@ -1348,7 +1411,7 @@
                   <p class="big-message">The Top 3</p>
                   <p class="muted">Condragulations on making it to the finale! You've all performed exceptionally well all season, but unfortunately, one of you will not be making it to the final lip sync.</p>
                   <div class="flex-center" style="gap:16px; margin-top: 12px;">
-                    ${f.finalists.map(q => getGameCard(q, 'bg-safe')).join("")}
+                    ${f.finalists.map(q => `<div class="placement-card bg-safe">${escapeHtml(q.name)}</div>`).join("")}
                   </div>
                 </div>
               `;
@@ -1359,7 +1422,7 @@
                   <p class="big-message">A difficult decision...</p>
                   <p class="muted">Based on your performances and track records all season...</p>
                   <div class="group-row" style="border:none; margin-top: 16px;">
-                    ${getGameCard(f.thirdPlace, 'bg-elim')}
+                    <div class="placement-card bg-elim">${escapeHtml(f.thirdPlace.name)}</div>
                     <p class="muted" style="margin-top: 8px;">I'm sorry my dear, but you will not be moving forward to the final lip sync. Sashay away.</p>
                   </div>
                 </div>
@@ -1372,9 +1435,9 @@
                   <p class="muted">Two queens stand before me. Prior to tonight, you were asked to prepare a lip sync performance to:</p>
                   <p class="big-message" style="margin: 12px 0;">${escapeHtml(f.lipSong)}</p>
                   <div class="flex-center" style="gap:24px; margin-top: 12px;">
-                    ${getGameCard(f.final.winner, 'bg-safe')}
+                    <div class="placement-card bg-safe">${escapeHtml(f.final.winner.name)}</div>
                     <p class="muted" style="font-weight:900;">VS</p>
-                    ${getGameCard(f.final.loser, 'bg-safe')}
+                    <div class="placement-card bg-safe">${escapeHtml(f.final.loser.name)}</div>
                   </div>
                 </div>
               `;
@@ -1388,19 +1451,13 @@
                     <div class="spinner"></div>
                   </div>
                   <div id="winnerRevealBox" class="hidden flex-col-center" style="width:100%;">
-                      <div class="placement-card bg-winner" style="padding: 24px; font-size: 20px; width: 100%; max-width: 400px; border-radius: 24px; flex-direction: column;">
+                      <div class="placement-card bg-winner" style="padding: 24px; font-size: 20px; width: 100%; max-width: 400px; border-radius: 24px;">
                         <p style="margin:0 0 8px; font-size:14px; font-weight:600; opacity:0.8;">WINNER</p>
-                        <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom: 8px;">
-                          ${f.final.winner.image ? `<img src="${escapeHtml(f.final.winner.image)}" style="width:72px; height:72px; border-radius:50%; object-fit:cover; border:3px solid rgba(0,0,0,0.1);" />` : `<div style="width:72px; height:72px; border-radius:50%; background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:bold;">?</div>`}
-                          <p class="big-message" style="margin:0;">${escapeHtml(f.final.winner.name)}<span class="winner-crown">👑</span></p>
-                        </div>
+                        <p class="big-message" style="margin:0;">${escapeHtml(f.final.winner.name)}<span class="winner-crown">👑</span></p>
                       </div>
-                      <div class="placement-card bg-runner" style="padding: 16px; width: 100%; max-width: 400px; border-radius: 16px; flex-direction: column;">
+                      <div class="placement-card bg-runner" style="padding: 16px; width: 100%; max-width: 400px; border-radius: 16px;">
                         <p style="margin:0 0 4px; font-size:12px; font-weight:600; opacity:0.8;">RUNNER UP</p>
-                        <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
-                          ${f.final.loser.image ? `<img src="${escapeHtml(f.final.loser.image)}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid rgba(0,0,0,0.1);" />` : `<div style="width:40px; height:40px; border-radius:50%; background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-weight:bold;">?</div>`}
-                          <p style="margin:0; font-weight:800; font-size: 16px;">${escapeHtml(f.final.loser.name)}</p>
-                        </div>
+                        <p style="margin:0; font-weight:800; font-size: 16px;">${escapeHtml(f.final.loser.name)}</p>
                       </div>
                   </div>
                 </div>
@@ -1439,7 +1496,7 @@
                       <tbody>
                         ${sortedQueens.map(q => `
                           <tr>
-                            <td class="qname-cell">${getTrackName(q)}</td>
+                            <td class="qname-cell">${escapeHtml(q.name)}</td>
                             ${Array.from({length: state.episodeNumber}, (_, i) => {
                               let p = q.history[i];
                               if (!p) return `<td class="empty-cell"></td>`;
