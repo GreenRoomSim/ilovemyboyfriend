@@ -165,89 +165,11 @@
     .muted { color: var(--muted); margin: 0; text-align: center; }
 
     /* Standings Table Styling */
-    .standings-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; background: white; table-layout: fixed; }
-    .standings-table th, .standings-table td { border: 1px solid var(--border); }
-    .standings-table th {
-      background: #d9d9d9;
-      padding: 8px 8px;
-      font-weight: 800;
-      text-align: center;
-      font-size: 12px;
-      vertical-align: top;
-    }
-    .standings-table th.rank-head { width: 62px; }
-    .standings-table th.name-head { width: 210px; }
-    .standings-table th.photo-head { width: 72px; }
-    .standings-table th.episode-head { min-width: 110px; }
-    .standings-table th.score-head { width: 72px; }
-
-    .episode-head-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      line-height: 1.05;
-      align-items: center;
-      justify-content: center;
-    }
-    .episode-head-wrap .ep-num { font-size: 12px; font-weight: 900; }
-    .episode-head-wrap .ep-maxi { font-size: 10px; font-weight: 700; line-height: 1.05; }
-    .episode-head-wrap .ep-mini {
-      font-size: 9px;
-      font-weight: 600;
-      color: var(--muted);
-      line-height: 1.05;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      width: 100%;
-    }
-
-    .standings-table td {
-      padding: 8px 8px;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 13px;
-    }
-    .standings-table td.rank-cell {
-      width: 62px;
-      font-weight: 800;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-    .standings-table td.qname-cell {
-      text-align: left;
-      font-weight: 900;
-      font-size: 15px;
-      width: 210px;
-    }
-    .standings-table td.photo-cell {
-      width: 72px;
-      padding: 6px 4px;
-    }
-    .queen-table-photo {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--border);
-      background: #f2f2f2;
-      display: block;
-      margin: 0 auto;
-    }
+    .standings-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; background: white; }
+    .standings-table th { background: #f9fff5; padding: 12px 10px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 13px; }
+    .standings-table td { padding: 10px; border: 1px solid var(--border); text-align: center; }
+    .standings-table td.qname-cell { text-align: left; font-weight: 700; width: 30%; }
     .standings-table .empty-cell { background: #fcfcfc; }
-    .standings-table td.episode-cell { padding: 0; }
-    .episode-result {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      width: 100%;
-      padding: 8px 4px;
-      font-weight: 900;
-      font-size: 11px;
-      line-height: 1;
-    }
 
     .footer-actions { display: flex; justify-content: flex-end; gap: 12px; align-items: center; margin-top: 24px; flex-wrap: wrap; }
     .winner-crown { display: inline-block; margin-left: 6px; font-size: 18px; }
@@ -283,7 +205,7 @@
   <div class="app">
     <div class="hero">
       <h1 class="title">Greenroom Drag Race Simulator</h1>
-      <p class="subtitle">Release v1.6.0 - Last Updated 13/4/26.</p>
+      <p class="subtitle">Release v1.6.1 - Last Updated 15/4/26.</p>
       
       <div class="button-row" style="margin-top: 16px;">
         <button id="preDefBtn" class="primary" style="padding: 8px 16px; font-size: 14px;">Pre-Defined Casts</button>
@@ -368,6 +290,11 @@
         </div>
         <div class="panel-body">
           <div class="patch-notes-content">
+            <h3>v1.6.1 - Update</h3>
+            <ul>
+              <li>Fixed Lip Sync Fatigue Issues</li>
+            </ul>
+
             <h3>v1.6.0 - Update</h3>
             <ul>
               <li>Added Season Formats</li>
@@ -637,8 +564,7 @@
       episodeData: null,
       finaleData: null,
       usedMinis: [],
-      usedMaxis: [],
-      episodeSummaries: []
+      usedMaxis: []
     };
 
     const el = {
@@ -798,10 +724,6 @@
     function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
     function escapeHtml(text) { return String(text).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;"); }
     function normalizeStat(v) { const n = parseInt(v ?? 5, 10); return clamp(Number.isFinite(n) ? n : 5, 1, 10); }
-    function ordinal(n) {
-      const s = ["th", "st", "nd", "rd"], v = n % 100;
-      return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
-    }
 
     function randomizeQueenForm() {
       el.comedyInput.value = intRand(1, 10); el.designInput.value = intRand(1, 10); el.performanceInput.value = intRand(1, 10); el.actingInput.value = intRand(1, 10); el.lipSyncInput.value = intRand(1, 10);
@@ -857,7 +779,7 @@
         record: { WIN: 0, TOP2: 0, HIGH: 0, SAFE: 0, LOW: 0, BTM2: 0, ELIM: 0 },
         history: [], eliminated: false, elimOrder: 999
       }));
-      state.episodeNumber = 1; state.phase = 1; state.mode = "game"; state.usedMinis = []; state.usedMaxis = []; state.episodeSummaries = [];
+      state.episodeNumber = 1; state.phase = 1; state.mode = "game"; state.usedMinis = []; state.usedMaxis = [];
       prepareEpisode(); renderAll(); renderEpisode();
     }
 
@@ -926,12 +848,6 @@
 
       const maxi = getMaxiChallenge(state.episodeNumber, n);
       const statKey = maxi.type.toLowerCase();
-
-      state.episodeSummaries.push({
-        ep: state.episodeNumber,
-        maxi: maxi.name,
-        mini: mini.none ? "-" : mini.challenge
-      });
 
       let scores = actives.map(q => {
         const score = rand(1, 10) + q.stats[statKey] * rand(0.8, 1.5) + rand(-1, 1);
@@ -1049,18 +965,6 @@
       if (r < 20) return { type: "fall", text: "Messy stumble" };
       if (r < 40) return { type: "reveal", text: "Stunning outfit reveal" };
       return { type: "slay", text: "Gave an incredible performance" };
-    }
-
-    function renderEpisodeHeaderCell(summary, index) {
-      return `
-        <th class="episode-head">
-          <div class="episode-head-wrap">
-            <div class="ep-num">Ep. ${index + 1}</div>
-            <div class="ep-maxi">${escapeHtml(summary?.maxi || "-")}</div>
-            <div class="ep-mini">${escapeHtml(summary?.mini || "-")}</div>
-          </div>
-        </th>
-      `;
     }
 
     function renderEpisode() {
@@ -1276,8 +1180,8 @@
           
           // Lip Sync Fatigue: Queens in their 4th bottom 2 (or more) automatically lose in regular seasons
           if (state.seasonFormat === "regular") {
-              if (p1.record.BTM2 >= 3 && p2.record.BTM2 < 3) s1 = -999;
-              else if (p2.record.BTM2 >= 3 && p1.record.BTM2 < 3) s2 = -999;
+              if (p1.record.BTM2 >= 4 && p2.record.BTM2 < 4) s1 = -999;
+              else if (p2.record.BTM2 >= 4 && p1.record.BTM2 < 4) s2 = -999;
           }
 
           let winner = s1 >= s2 ? {queen: p1, event: e1} : {queen: p2, event: e2};
@@ -1462,26 +1366,22 @@
               <table class="standings-table">
                 <thead>
                   <tr>
-                    <th class="rank-head">Rank</th>
-                    <th class="name-head">Queen</th>
-                    <th class="photo-head">Photo</th>
-                    ${state.episodeSummaries.slice(0, state.episodeNumber).map((summary, i) => renderEpisodeHeaderCell(summary, i)).join("")}
-                    <th class="score-head">Score</th>
+                    <th>Queen</th>
+                    ${Array.from({length: state.episodeNumber}, (_, i) => `<th>Ep ${i+1}</th>`).join("")}
+                    <th>Score</th>
                   </tr>
                 </thead>
                 <tbody>
-                  ${sortedQueens.map((q, idx) => `
+                  ${sortedQueens.map(q => `
                     <tr>
-                      <td class="rank-cell">${ordinal(idx + 1)}</td>
                       <td class="qname-cell">${escapeHtml(q.name)}</td>
-                      <td class="photo-cell">${q.image ? `<img src="${escapeHtml(q.image)}" class="queen-table-photo" alt="${escapeHtml(q.name)}" />` : `<div class="queen-table-photo" style="display:grid;place-items:center;font-weight:900;color:var(--muted);">?</div>`}</td>
-                      ${state.episodeSummaries.slice(0, state.episodeNumber).map((_, i) => {
+                      ${Array.from({length: state.episodeNumber}, (_, i) => {
                         let p = q.history[i];
-                        if (!p) return `<td class="empty-cell episode-cell"></td>`;
+                        if (!p) return `<td class="empty-cell"></td>`;
                         let cssClass = (p === "BTM2" || p === "BTM") ? "bg-btm" : (p === "TOP 2" ? "bg-top2" : `bg-${p.toLowerCase()}`);
-                        return `<td class="episode-cell"><div class="episode-result ${cssClass}">${p}</div></td>`;
+                        return `<td class="${cssClass}" style="font-weight: 900; font-size: 12px;">${p}</td>`;
                       }).join("")}
-                      <td style="font-weight: 700;">${trackScore(q)}</td>
+                      <td style="font-weight: 600;">${trackScore(q)}</td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -1686,26 +1586,22 @@
                   <table class="standings-table">
                     <thead>
                       <tr>
-                        <th class="rank-head">Rank</th>
-                        <th class="name-head">Queen</th>
-                        <th class="photo-head">Photo</th>
-                        ${state.episodeSummaries.slice(0, state.episodeNumber - 1).map((summary, i) => renderEpisodeHeaderCell(summary, i)).join("")}
-                        <th class="score-head">Score</th>
+                        <th>Queen</th>
+                        ${Array.from({length: state.episodeNumber}, (_, i) => `<th>Ep ${i+1}</th>`).join("")}
+                        <th>Score</th>
                       </tr>
                     </thead>
                     <tbody>
-                      ${sortedQueens.map((q, idx) => `
+                      ${sortedQueens.map(q => `
                         <tr>
-                          <td class="rank-cell">${ordinal(idx + 1)}</td>
                           <td class="qname-cell">${escapeHtml(q.name)}</td>
-                          <td class="photo-cell">${q.image ? `<img src="${escapeHtml(q.image)}" class="queen-table-photo" alt="${escapeHtml(q.name)}" />` : `<div class="queen-table-photo" style="display:grid;place-items:center;font-weight:900;color:var(--muted);">?</div>`}</td>
-                          ${state.episodeSummaries.slice(0, state.episodeNumber - 1).map((_, i) => {
+                          ${Array.from({length: state.episodeNumber}, (_, i) => {
                             let p = q.history[i];
-                            if (!p) return `<td class="empty-cell episode-cell"></td>`;
+                            if (!p) return `<td class="empty-cell"></td>`;
                             let cssClass = (p === "BTM2" || p === "BTM") ? "bg-btm" : (p === "RUNNER UP" || p === "RUNNER" ? "bg-runner" : (p === "TOP 2" ? "bg-top2" : `bg-${p.toLowerCase()}`));
-                            return `<td class="episode-cell"><div class="episode-result ${cssClass}">${p}</div></td>`;
+                            return `<td class="${cssClass}" style="font-weight: 900; font-size: 12px;">${p}</td>`;
                           }).join("")}
-                          <td style="font-weight: 700;">${trackScore(q)}</td>
+                          <td style="font-weight: 600;">${trackScore(q)}</td>
                         </tr>
                       `).join("")}
                     </tbody>
