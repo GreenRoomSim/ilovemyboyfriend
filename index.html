@@ -74,9 +74,7 @@
     .subtle { color: var(--muted); font-size: 13px; line-height: 1.45; margin: 0 0 14px; }
     .form-grid { display: grid; gap: 10px; }
     .field { display: grid; gap: 6px; font-size: 12px; color: var(--muted); }
-    .field input, .field select { width: 100%; border: 1px solid var(--border);
-      border-radius: 12px; padding: 10px 11px; font-size: 14px; background: #fbfff8; color: var(--ink); outline: none;
-    }
+    .field input, .field select { width: 100%; border: 1px solid var(--border); border-radius: 12px; padding: 10px 11px; font-size: 14px; background: #fbfff8; color: var(--ink); outline: none; }
     .field select { cursor: pointer; -webkit-appearance: none; appearance: none; }
     .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 
@@ -90,28 +88,20 @@
     button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
     .primary { background: linear-gradient(180deg, var(--lime), #76d939); color: #14380e; }
-    .secondary, .file-btn { background: #ffffff; color: var(--ink); border: 1px solid var(--border); box-shadow: none; display: inline-flex;
-      align-items: center; justify-content: center; }
+    .secondary, .file-btn { background: #ffffff; color: var(--ink); border: 1px solid var(--border); box-shadow: none; display: inline-flex; align-items: center; justify-content: center; }
     .danger { background: linear-gradient(180deg, #ffb3b3, #ff8e8e); color: #5a1010; }
     .ghost { background: transparent; border: 1px solid var(--border); box-shadow: none; color: var(--ink); }
 
-    .note-box { margin-top: 12px; padding: 10px 12px; border-radius: 14px; background: #f8fff3; border: 1px dashed var(--border);
-      color: var(--muted); font-size: 13px; line-height: 1.5; }
-    .cast-topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      margin-bottom: 12px; flex-wrap: wrap; }
-    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px;
-      border: 1px solid var(--border); background: #f9fff5; font-size: 12px; color: var(--muted); font-weight: 500; }
+    .note-box { margin-top: 12px; padding: 10px 12px; border-radius: 14px; background: #f8fff3; border: 1px dashed var(--border); color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .cast-topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; border: 1px solid var(--border); background: #f9fff5; font-size: 12px; color: var(--muted); font-weight: 500; }
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-    .right-side-empty { padding: 18px; border-radius: 18px; border: 1px dashed var(--border);
-      background: #fbfff7; color: var(--muted); text-align: center; min-height: 160px; display: grid; place-items: center; }
-    .queen-card { background: var(--card-2);
-      border: 1px solid var(--border); border-radius: 18px; padding: 12px; box-shadow: 0 6px 14px rgba(76, 110, 50, 0.06);
-    }
+    .right-side-empty { padding: 18px; border-radius: 18px; border: 1px dashed var(--border); background: #fbfff7; color: var(--muted); text-align: center; min-height: 160px; display: grid; place-items: center; }
+    .queen-card { background: var(--card-2); border: 1px solid var(--border); border-radius: 18px; padding: 12px; box-shadow: 0 6px 14px rgba(76, 110, 50, 0.06); }
     .queen-card .topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
     .queen-card .queen-info { display: flex; align-items: center; gap: 10px; }
-    .queen-card .queen-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #eee;
-      border: 1px solid var(--border); }
+    .queen-card .queen-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #eee; border: 1px solid var(--border); }
     .queen-name { font-weight: 900; font-size: 16px; margin: 0; line-height: 1.2; }
     .queen-mini { font-size: 12px; color: var(--muted); line-height: 1.4; }
     .tiny-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; margin-top: 12px; }
@@ -231,7 +221,7 @@
             <button class="tab-btn" data-target="tab-uk">UK Seasons</button>
           </div>
 
-         <div id="tab-us" class="tab-content active">
+          <div id="tab-us" class="tab-content active">
             <div class="season-grid">
               <button class="season-btn predef-btn" data-season="US S1">S1</button>
               <button class="season-btn predef-btn" data-season="US S2">S2</button>
@@ -294,7 +284,7 @@
           <div class="patch-notes-content">
             <h3>v1.9.0 - Update</h3>
             <ul>
-              <li>Added the LaLaPaRuza Smackdown! A mid-season sudden-death lip-sync tournament that automatically triggers when exactly 8 queens are left!</li>
+              <li>Added the mid-season LaLaPaRuza Smackdown (Toggleable in setup).</li>
             </ul>
 
             <h3>v1.8.0 - Update</h3>
@@ -470,6 +460,13 @@
                 </select>
               </label>
 
+              <label class="field">LaLaPaRuza Smackdown
+                <select id="lalaPaRuzaSelect">
+                  <option value="enabled">Enabled (Mid-Season at Top 8)</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+
               <button id="startBtn" class="primary" disabled>Start Season</button>
             </div>
           </div>
@@ -603,6 +600,7 @@
       seasonFormat: "regular",
       finaleFormat: "top4",
       premiereFormat: "regular",
+      lalaPaRuzaEnabled: true,
       queens: [],
       episodeNumber: 0,
       phase: 0,
@@ -620,6 +618,7 @@
       seasonFormatSelect: document.getElementById("seasonFormatSelect"),
       finaleFormatSelect: document.getElementById("finaleFormatSelect"), 
       premiereFormatSelect: document.getElementById("premiereFormatSelect"),
+      lalaPaRuzaSelect: document.getElementById("lalaPaRuzaSelect"),
       startBtn: document.getElementById("startBtn"), castPreview: document.getElementById("castPreview"), castEmptyState: document.getElementById("castEmptyState"), castCountText: document.getElementById("castCountText"),
       gameHeader: document.getElementById("gameHeader"), gameMeta: document.getElementById("gameMeta"), gameContent: document.getElementById("gameContent"), nextPhaseBtn: document.getElementById("nextPhaseBtn"), screenCounterText: document.getElementById("screenCounterText"),
       finaleMeta: document.getElementById("finaleMeta"), finaleContent: document.getElementById("finaleContent"), finaleBtn: document.getElementById("finaleBtn"),
@@ -751,7 +750,8 @@
     }
 
     function clearQueenForm() {
-      el.queenNameInput.value = ""; el.comedyInput.value = 5; el.designInput.value = 5; el.performanceInput.value = 5; el.actingInput.value = 5; el.lipSyncInput.value = 5;
+      el.queenNameInput.value = ""; el.comedyInput.value = 5;
+      el.designInput.value = 5; el.performanceInput.value = 5; el.actingInput.value = 5; el.lipSyncInput.value = 5;
     }
 
     function updateSetupUI() {
@@ -790,6 +790,7 @@
       state.seasonFormat = el.seasonFormatSelect.value;
       state.finaleFormat = el.finaleFormatSelect.value;
       state.premiereFormat = el.premiereFormatSelect.value;
+      state.lalaPaRuzaEnabled = el.lalaPaRuzaSelect.value === "enabled";
       
       el.customQueenModal.classList.add("hidden");
       state.queens = state.queens.map((q, i) => ({
@@ -850,7 +851,8 @@
     }
 
     function simulateLaLaMatch(q1, q2) {
-      let e1 = rollLipEvent(); let e2 = rollLipEvent();
+      let e1 = rollLipEvent();
+      let e2 = rollLipEvent();
       let s1 = rand(1,10) + q1.stats.lipSync;
       if(e1.type==="words") s1-=99; if(e1.type==="fall") s1-=2; if(e1.type==="reveal") s1+=2;
       let s2 = rand(1,10) + q2.stats.lipSync;
@@ -863,9 +865,8 @@
     function prepareEpisode() {
       const actives = activeQueens();
       const n = actives.length;
-
       // LaLaPaRuza Trigger Check
-      if (n === 8 && !state.usedMaxis.includes("LaLaPaRuza")) {
+      if (state.lalaPaRuzaEnabled && n === 8 && !state.usedMaxis.includes("LaLaPaRuza")) {
           state.usedMaxis.push("LaLaPaRuza");
           let shuffled = [...actives].sort(() => Math.random() - 0.5);
           let r1Matches = [
@@ -884,7 +885,6 @@
 
           let r3Match = {p1: r2Results[0].loser, p2: r2Results[1].loser};
           let r3Result = simulateLaLaMatch(r3Match.p1, r3Match.p2);
-
           state.episodeData = {
               isLaLaPaRuza: true,
               maxi: {name: "LaLaPaRuza Lip Sync Smackdown"},
@@ -910,7 +910,6 @@
         const score = rand(1, 10) + q.stats[statKey] * rand(0.8, 1.5) + rand(-1, 1);
         return { queen: q, score };
       }).sort((a, b) => b.score - a.score);
-
       let categories = new Map();
       let winners = [], highQueens = [], pureSafe = [], savedLow = null, lowQueens = [], bottomTwo = [];
       let isGG = false;
@@ -931,19 +930,15 @@
           let teamB = shuffled.slice(Math.floor(n/2));
           let nameA = pick(girlGroupNames);
           let nameB = pick(girlGroupNames.filter(name => name !== nameA));
-
           let scoreA = teamA.reduce((sum, item) => sum + item.score, 0);
           let scoreB = teamB.reduce((sum, item) => sum + item.score, 0);
-
           let winningTeam = scoreA > scoreB ? teamA : teamB;
           let losingTeam = scoreA > scoreB ? teamB : teamA;
           let winningName = scoreA > scoreB ? nameA : nameB;
           let losingName = scoreA > scoreB ? nameB : nameA;
-
           losingTeam.sort((a, b) => b.score - a.score);
           winners = winningTeam.map(i => i.queen);
           winningTeam.forEach(i => categories.set(i.queen.id, "Slayed"));
-
           let lQueens = losingTeam.map(i => i.queen);
           bottomTwo = lQueens.slice(-2);
           savedLow = lQueens.length > 2 ? lQueens[lQueens.length - 3] : null;
@@ -987,7 +982,6 @@
               else if (idx === n - 3) label = "Bad";
               categories.set(entry.queen.id, label);
           });
-
           winners = scores.slice(0, winnerCount).map(s => s.queen);
           bottomTwo = scores.slice(n-2, n).map(s => s.queen);
           savedLow = n >= 6 ? scores[n-3].queen : null;
@@ -1012,7 +1006,6 @@
           let asHighQueens = [];
           let asBottomTwo = [];
           let asSavedLow = null;
-
           if (n <= 4) {
               asBottomTwo = scores.slice(2).map(s => s.queen);
           } else {
@@ -1063,19 +1056,17 @@
 
       const totalScreens = isGG ? 8 : (data.isLaLaPaRuza ? 8 : 7);
       el.screenCounterText.textContent = `Screen ${state.phase} of ${totalScreens}`;
-
       // Rig Button Toggle Logic
       el.rigGameBtn.classList.toggle("hidden", 
           (isGG && state.phase !== 4 && state.phase !== 6) ||
           (data.isLaLaPaRuza && state.phase !== 6) ||
           (!isGG && !data.isLaLaPaRuza && state.phase !== 3 && state.phase !== 5)
       );
-
       // Phase Translator mapping specifically to handle Girl Group shifts
       let phaseTag = state.phase;
       if (isGG) {
           if (state.phase === 2) phaseTag = "gg_teams";
-          else if (state.phase > 2) phaseTag = state.phase - 1; 
+          else if (state.phase > 2) phaseTag = state.phase - 1;
       }
       if (data.isLaLaPaRuza) {
           if (state.phase === 8) {
@@ -1086,7 +1077,6 @@
       }
 
       let content = "";
-
       if (data.isLaLaPaRuza && phaseTag !== 7) {
           if (state.phase === 1) {
               content = `
@@ -1280,7 +1270,8 @@
                   else if (cat === "Flopped" || cat === "Bad") bad.push(row.queen);
                   else okay.push(row.queen);
                 });
-                slayed.sort(() => Math.random() - 0.5); okay.sort(() => Math.random() - 0.5); bad.sort(() => Math.random() - 0.5);
+                slayed.sort(() => Math.random() - 0.5);
+                okay.sort(() => Math.random() - 0.5); bad.sort(() => Math.random() - 0.5);
                 content = `
                   <div class="section-card">
                     <div class="label-row"><span class="pill">Screen ${state.phase}</span><span class="pill">Maxi Challenge</span></div>
@@ -1510,12 +1501,15 @@
             if (!data.lipSync) {
               let p1, p2;
               if (state.seasonFormat === "all-stars-legacy" || (state.episodeNumber === 1 && state.premiereFormat === "top2") || data.isMidSeasonNonElim) {
-                  p1 = data.placements.topTwo[0]; p2 = data.placements.topTwo[1];
+                  p1 = data.placements.topTwo[0];
+                  p2 = data.placements.topTwo[1];
               } else {
-                  p1 = data.placements.bottomTwo[0]; p2 = data.placements.bottomTwo[1];
+                  p1 = data.placements.bottomTwo[0];
+                  p2 = data.placements.bottomTwo[1];
               }
               
-              const e1 = rollLipEvent(); const e2 = rollLipEvent();
+              const e1 = rollLipEvent();
+              const e2 = rollLipEvent();
               let s1 = rand(1,10) + p1.stats.lipSync; if(e1.type==="words") s1-=99; if(e1.type==="fall") s1-=2; if(e1.type==="reveal") s1+=2;
               let s2 = rand(1,10) + p2.stats.lipSync; if(e2.type==="words") s2-=99; if(e2.type==="fall") s2-=2; if(e2.type==="reveal") s2+=2;
               if (state.seasonFormat === "regular") {
@@ -1554,12 +1548,12 @@
             `;
           } else if (phaseTag === 6 && !data.isLaLaPaRuza) {
             if (!data.elimination) {
-              let w = data.lipSync.winner.queen; let l = data.lipSync.loser.queen;
+              let w = data.lipSync.winner.queen;
+              let l = data.lipSync.loser.queen;
               let s1 = data.lipSync.s1; let s2 = data.lipSync.s2;
               let ev1 = data.lipSync.performances[0]; let ev2 = data.lipSync.performances[1];
               let isDoubleShantay = (s1 >= 13 && s2 >= 13 && Math.random() < 0.1);
               let isDoubleSashay = (s1 <= 7 && s2 <= 7 && Math.random() < 0.02 && activeQueens().length > (state.finaleFormat === "top3" ? 4 : 5));
-              
               if (data.riggedOutcome) {
                    if (data.riggedOutcome === "w1") { w = ev1.queen; l = ev2.queen; isDoubleShantay=false; isDoubleSashay=false;}
                    if (data.riggedOutcome === "w2") { w = ev2.queen; l = ev1.queen; isDoubleShantay=false; isDoubleSashay=false;}
@@ -1569,11 +1563,13 @@
 
               if (state.seasonFormat === "all-stars-legacy") {
                   if (state.episodeNumber === 1 && (state.premiereFormat === "no-elim" || state.premiereFormat === "top2")) {
-                      w.record.WIN += 1; w.history[state.episodeNumber - 1] = "WIN";
+                      w.record.WIN += 1;
+                      w.history[state.episodeNumber - 1] = "WIN";
                       l.record.TOP2 = (l.record.TOP2 || 0) + 1; l.history[state.episodeNumber - 1] = "TOP 2";
                       data.elimination = { legacyNoElim: true, winner: w, top2loser: l };
                   } else {
-                      w.record.WIN += 1; w.history[state.episodeNumber - 1] = "WIN";
+                      w.record.WIN += 1;
+                      w.history[state.episodeNumber - 1] = "WIN";
                       l.record.TOP2 = (l.record.TOP2 || 0) + 1; l.history[state.episodeNumber - 1] = "TOP 2";
                       const btmQueens = data.placements.bottomTwo;
                       const eliminatedQueen = pick(btmQueens); 
@@ -1583,25 +1579,30 @@
                       data.elimination = { legacy: true, winner: w, top2loser: l, eliminated: eliminatedQueen };
                   }
               } else if (state.episodeNumber === 1 && state.premiereFormat === "top2") {
-                  w.record.WIN += 1; w.history[0] = "WIN";
+                  w.record.WIN += 1;
+                  w.history[0] = "WIN";
                   l.record.TOP2 = (l.record.TOP2 || 0) + 1; l.history[0] = "TOP 2";
                   data.elimination = { top2LipSync: true, winner: w, loser: l };
               } else if (data.isMidSeasonNonElim) {
-                  w.record.WIN += 1; w.history[state.episodeNumber - 1] = "WIN";
+                  w.record.WIN += 1;
+                  w.history[state.episodeNumber - 1] = "WIN";
                   l.record.TOP2 = (l.record.TOP2 || 0) + 1; l.history[state.episodeNumber - 1] = "TOP 2";
                   data.elimination = { top2LipSync: true, winner: w, loser: l };
               } else if (state.episodeNumber === 1 && state.premiereFormat === "no-elim") {
-                  const q1 = data.lipSync.performances[0].queen; const q2 = data.lipSync.performances[1].queen;
+                  const q1 = data.lipSync.performances[0].queen;
+                  const q2 = data.lipSync.performances[1].queen;
                   data.elimination = { doubleShantay: true, forcedNoElim: true, q1, q2 };
               } else if (isDoubleShantay) {
                   data.elimination = { doubleShantay: true, q1: data.lipSync.performances[0].queen, q2: data.lipSync.performances[1].queen };
               } else if (isDoubleSashay) {
-                  const q1 = data.lipSync.performances[0].queen; const q2 = data.lipSync.performances[1].queen;
+                  const q1 = data.lipSync.performances[0].queen;
+                  const q2 = data.lipSync.performances[1].queen;
                   q1.record.ELIM += 1; q1.eliminated = true; q1.elimOrder = state.episodeNumber; q1.history[state.episodeNumber - 1] = "ELIM";
                   q2.record.ELIM += 1; q2.eliminated = true; q2.elimOrder = state.episodeNumber; q2.history[state.episodeNumber - 1] = "ELIM";
                   data.elimination = { doubleSashay: true, q1, q2 };
               } else {
-                  l.record.ELIM += 1; l.eliminated = true; l.elimOrder = state.episodeNumber; l.history[state.episodeNumber - 1] = "ELIM";
+                  l.record.ELIM += 1;
+                  l.eliminated = true; l.elimOrder = state.episodeNumber; l.history[state.episodeNumber - 1] = "ELIM";
                   data.elimination = { survivor: w, eliminated: l };
               }
             }
@@ -1821,7 +1822,7 @@
       if (state.finaleFormat === "top4" && [1, 3, 5].includes(f.step)) isRigFinale = true;
       if (state.finaleFormat === "top3" && [1, 3].includes(f.step)) isRigFinale = true;
       el.rigFinaleBtn.classList.toggle("hidden", !isRigFinale);
-      
+
       if (state.finaleFormat === "top4") {
           if (f.step === 1) {
             content = `
@@ -2235,7 +2236,7 @@
         else if (rt === "ep5") {
             state.episodeData.riggedOutcome = document.getElementById("rigLipSync").value;
             if (!state.episodeData.isLaLaPaRuza) {
-                state.episodeData.elimination = null; 
+                state.episodeData.elimination = null;
             }
             el.rigModal.classList.add("hidden");
             alert("Outcome locked! Click Next to see results.");
