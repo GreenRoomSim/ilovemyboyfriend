@@ -520,7 +520,7 @@
   </div>
 
   <script>
-    const MIN_CAST = 10;
+    const MIN_CAST = 8;
     const MAX_CAST = 16;
     
     let allRealQueens = [];
@@ -1077,7 +1077,13 @@
           if (state.phase === 2) phaseTag = "gg_teams";
           else if (state.phase > 2) phaseTag = state.phase - 1; 
       }
-      if (data.isLaLaPaRuza && state.phase === 8) phaseTag = 7;
+      if (data.isLaLaPaRuza) {
+          if (state.phase === 8) {
+              phaseTag = 7; // Maps the final stats screen to the track record
+          } else {
+              phaseTag = "lala"; // Labels all other screens (1-7) as the tournament
+          }
+      }
 
       let content = "";
 
