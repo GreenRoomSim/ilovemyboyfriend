@@ -230,7 +230,7 @@
 
     .bg-shantay { background: #dcf3cd !important; color: #14380e !important; border: none;
     }
-    .bg-return { background: #dd5219 !important; color: #ffffff !important; border: none; font-weight: bold; }
+    .bg-return { background: #ff943d !important; color: #000000 !important; border: none; font-weight: bold; }
     .bg-winner { background: #f1c232 !important; color: #000000 !important; border: none;
     }
     .bg-runner { background: #c3c3c3 !important; color: #000000 !important; border: none;
@@ -618,7 +618,7 @@
           <img src="banner.png" alt="Drag Race Simulator Banner" class="main-logo" />
         </div>
       <h1 class="title">Greenroom Drag Race Simulator</h1>
-      <p class="subtitle">Release v2.0.0 - Last Updated 26/4/26</p>
+      <p class="subtitle">Dev v2.1.0 - Last Updated 28/4/26</p>
       
       <div class="button-row" style="margin-top: 16px;">
         <button id="preDefBtn" class="primary" style="padding: 8px 16px; font-size: 14px;">Pre-Defined Casts</button>
@@ -1255,7 +1255,7 @@
         if (p === "T_SAFE_ELIM") return "bg-t_safe_elim";
         if (p === "T_WIN2_ELIM") return "bg-t_win2_elim";
         if (p === "T_WIN_ELIM")  return "bg-t_win_elim";
-        if (p === "RETURN")      return "bg-return";
+        if (p === "RTRN")        return "bg-return";
         return `bg-${p.toLowerCase()}`;
     }
 
@@ -2092,7 +2092,7 @@ if (state.seasonFormat === "tournament-of-all-stars") {
           } else if (phaseTag === 8) {
               if (!data.wildcardApplied) {
                    data.wildcard.eliminated = false; data.wildcard.elimOrder = 999;
-                   data.wildcard.history[state.episodeNumber-1] = "RETURN"; data.wildcardApplied = true;
+                   data.wildcard.history[state.episodeNumber-1] = "RTRN"; data.wildcardApplied = true;
               }
               el.gameContent.innerHTML = `<div class="section-card flex-col-center"><p class="big-message">The Wildcard</p><p class="muted">The queen returning to the competition is...</p><div class="placement-card bg-shantay" style="font-size:24px; padding:20px;">${escapeHtml(data.wildcard.name)}</div><p class="muted" style="margin-top:16px;">Welcome back.</p></div>`;
               el.nextPhaseBtn.textContent = "Next"; return;
