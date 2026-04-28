@@ -3892,14 +3892,19 @@ if (state.seasonFormat === "tournament-of-all-stars") {
                 if (swapMatch(f.qf4, document.getElementById("rigQf4").value)) changed = true;
                 // Step 3: Rebuild SF and final if anything changed
                 if (changed) {
+                    // Step 3: Rebuild SF and final if anything changed
+                if (changed) {
                     f.sf1 = makeMatch(f.qf1.winner, f.qf2.winner); f.sf2 = makeMatch(f.qf3.winner, f.qf4.winner);
                     f.sf1.loser.elimOrder = state.episodeNumber + 2; f.sf1.winner.elimOrder = 999;
-                    f.sf1.loser.history[finEpIdx] = "ELIM";
                     f.sf2.loser.elimOrder = state.episodeNumber + 2; f.sf2.winner.elimOrder = 999;
-                    f.sf2.loser.history[finEpIdx] = "ELIM";
                     f.final = makeMatch(f.sf1.winner, f.sf2.winner);
                     f.final.loser.elimOrder = state.episodeNumber + 3; f.final.winner.elimOrder = 999;
-                    f.final.loser.history[finEpIdx] = "RUNNER UP"; f.final.winner.history[finEpIdx] = "WINNER";
+                }
+                // Step 4: ALWAYS restore histories (even if nothing changed, the clear step wiped them)
+                f.sf1.loser.history[finEpIdx] = "ELIM";
+                f.sf2.loser.history[finEpIdx] = "ELIM";
+                f.final.loser.history[finEpIdx] = "RUNNER UP";
+                f.final.winner.history[finEpIdx] = "WINNER";
                 }
             } else if (rt === "fin_toas_sf") {
                 const finEpIdx = state.episodeNumber - 1;
@@ -3919,20 +3924,25 @@ if (state.seasonFormat === "tournament-of-all-stars") {
                 };
                 if (swapSf(f.sf1, document.getElementById("rigSf1").value)) sfChanged = true;
                 if (swapSf(f.sf2, document.getElementById("rigSf2").value)) sfChanged = true;
-                // Step 3: Rebuild final
+                // Step 3: Rebuild final if needed
                 if (sfChanged) {
                     f.final = makeMatch(f.sf1.winner, f.sf2.winner);
                     f.final.loser.elimOrder = state.episodeNumber + 3; f.final.winner.elimOrder = 999;
-                    f.final.loser.history[finEpIdx] = "RUNNER UP"; f.final.winner.history[finEpIdx] = "WINNER";
                 }
+                // Step 4: ALWAYS restore final histories (the clear step wiped them unconditionally)
+                f.final.loser.history[finEpIdx] = "RUNNER UP";
+                f.final.winner.history[finEpIdx] = "WINNER";
+
             } else if (rt === "fin_toas_fin") {
                 let wid = document.getElementById("rigFin").value;
                 const finEpIdx = state.episodeNumber - 1;
                 if (wid != f.final.winner.id) {
                     let temp = f.final.winner; f.final.winner = f.final.loser; f.final.loser = temp;
                     f.final.loser.elimOrder = state.episodeNumber + 3; f.final.winner.elimOrder = 999;
-                    f.final.loser.history[finEpIdx] = "RUNNER UP"; f.final.winner.history[finEpIdx] = "WINNER";
                 }
+                // ALWAYS write histories so a previous rig clear can never leave this blank
+                f.final.loser.history[finEpIdx] = "RUNNER UP";
+                f.final.winner.history[finEpIdx] = "WINNER";
             }
             el.rigModal.classList.add("hidden");
             renderFinale();
